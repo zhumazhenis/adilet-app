@@ -1,0 +1,33 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <br>
+  <br>
+  <h3>Heat Image</h3>
+  <!--  Heat image-->
+  <div class="row">
+    <div class="col-4">
+      <img width="300" alt="Angular Logo" [src]="heatImg">
+      <input type="file" (change)="previewHeatImage($event)" placeholder="Upload image" accept="image/*">
+      <br>
+      <br>
+      <button class="btn btn-success" (click)="uploadHeatImage()">Process</button>
+    </div>
+
+    <div class="col-4">
+      <img width="300" alt="Angular Logo" [src]="heatHotImgOutput">
+    </div>
+
+    <div class="col-4">
+      <img width="300" alt="Angular Logo" [src]="heatIrImgOutput">
+    </div>
+
+  </div>
+
+  <!--  Simple image-->
+  <div class="row">
+
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
