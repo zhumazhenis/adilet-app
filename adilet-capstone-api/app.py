@@ -1,11 +1,12 @@
 import json
 
+import cv2
 from flask import Flask
 from flask import request, send_file
 
+from device_classifier import classify
 from hotspot import find_hotspot
 from irimage import find_irimage
-import cv2
 
 app = Flask(__name__)
 
@@ -15,8 +16,7 @@ def process_simple_image():
     if request.method == 'POST':
         r = request
         temp = request.files['uploadFile']
-        # temp.save('kaz.jpg')
-        x = 1
+        temp.save('simple.jpg')
 
         # nparr = np.fromstring(r.data, np.uint8)
         #
@@ -27,8 +27,9 @@ def process_simple_image():
         # extension = os.path.splitext(file.filename)[1]
         # f_name = str(uuid.uuid4()) + extension
         # file.save(os.path.join(app.config['UPLOAD_FOLDER'], f_name))
+
         return app.response_class(
-            response=json.dumps({'a': 1, 'b': 2}),
+            response=json.dumps({'data': classify('simple.jpg')}),
             status=200,
             mimetype='application/json'
         )
@@ -53,6 +54,10 @@ def process_heat_ir_image():
         temp.save('ir.jpg')
         find_irimage('ir.jpg')
         return send_file('ir_out.jpg', mimetype='image/jpg')
+
+
+def create_app():
+    return app
 
 
 if __name__ == '__main__':

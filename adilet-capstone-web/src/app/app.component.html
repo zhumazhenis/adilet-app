@@ -2,31 +2,133 @@
 <div class="container">
   <br>
   <br>
-  <h3>Heat Image</h3>
-  <!--  Heat image-->
-  <div class="row">
-    <div class="col-4">
-      <img width="300" alt="Angular Logo" [src]="heatImg">
-      <input type="file" (change)="previewHeatImage($event)" placeholder="Upload image" accept="image/*">
-      <br>
-      <br>
-      <button class="btn btn-success" (click)="uploadHeatImage()">Process</button>
+  <h2>Project App</h2>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      Thermal Image Analyzer
+      <a class="float-right" href="https://github.com/adilet-b11/capstone_project/tree/master/Test%20images">Test
+        images</a>
     </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <h5 class="card-title">Original image</h5>
+          <img *ngIf="heatImg" width="300" alt="Angular Logo" [src]="heatImg">
+          <br>
+          <br>
 
-    <div class="col-4">
-      <img width="300" alt="Angular Logo" [src]="heatHotImgOutput">
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile01" (change)="previewHeatImage($event)"
+                     placeholder="Upload image" accept="image/*">
+              <label class="custom-file-label" for="inputGroupFile01">{{heatImgFile?.name || 'Choose file'}}</label>
+            </div>
+          </div>
+          <button class="btn btn-success" (click)="uploadHeatImage()" [disabled]="!heatImgFile">Process</button>
+        </div>
+
+        <div class="col-4">
+          <div *ngIf="heatHotImgOutput">
+            <h5 class="card-title">Hotspot detection</h5>
+            <img width="300" alt="Angular Logo" [src]="heatHotImgOutput">
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div *ngIf="heatIrImgOutput">
+            <h5 class="card-title">Stages</h5>
+            <img width="300" alt="Angular Logo" [src]="heatIrImgOutput">
+          </div>
+        </div>
+
+      </div>
     </div>
-
-    <div class="col-4">
-      <img width="300" alt="Angular Logo" [src]="heatIrImgOutput">
-    </div>
-
   </div>
+
 
   <!--  Simple image-->
-  <div class="row">
 
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      Device Classifier
+      <a class="float-right" href="https://github.com/adilet-b11/capstone_project/tree/master/Test%20images">Test
+        images</a>
+    </div>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-6">
+
+          <h5 class="card-title">Original image</h5>
+          <img *ngIf="simpleImg" width="300" alt="Angular Logo" [src]="simpleImg">
+          <br>
+          <br>
+
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile02" (change)="previewSimpleImage($event)"
+                     placeholder="Upload image" accept="image/*">
+              <label class="custom-file-label" for="inputGroupFile01">{{simpleImgFile?.name || 'Choose file'}}</label>
+            </div>
+          </div>
+
+
+          <button class="btn btn-success" [disabled]="!simpleImgFile" (click)="uploadSimpleImage()">Process</button>
+        </div>
+        <div class="col-6">
+          <div *ngIf="classes">
+            <h4>Result</h4>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Class</th>
+                <th scope="col">Probability</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of classes?.data || []; let i = index">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{c.class}}</td>
+                <td>{{c.score}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <br>
+  <br>
+
+  <!--  style="{'max-width': 50%; 'max-height': 50%}"-->
+
+
+  <div class="card">
+    <div class="card-header">
+      Contributors
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <img src="../assets/images/photo5235720466067467762.jpg" style="width:200px;height:215px;">&nbsp;&nbsp;
+          <p>Adilet Baktykerey</p>
+          <p>adilet.baktykerey@nu.edu.kz</p>
+        </div>
+        <div class="col-6">
+          <img src="../assets/images/photo5235720466067467761.jpg" style="width:200px;height:215px;">
+          <p>Askar Zhanaliyev</p>
+          <span>askar.zhanaliyev@nu.edu.kz</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <p class="float-right">April, 2020</p>
 </div>
 
 

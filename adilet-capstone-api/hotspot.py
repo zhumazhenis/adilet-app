@@ -28,5 +28,5 @@ def find_hotspot(img_path):
     cv2.circle(img, (x, y), 3, (0, 0, 0), -1)
     cv2.line(img, (x, y), (w, h), 1)
     cv2.circle(img, (w, h), 3, (0, 0, 0), -1)
-    cv2.putText(img, "Hotspot " + str(z) + ' C', (w - 50, h - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
+    cv2.putText(img, "Hotspot " + str(z) + ' C', (w - 50, h - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
     return img

@@ -18,6 +18,7 @@ export class AppComponent {
 
   heatHotImgOutput: any = null;
   heatIrImgOutput: any = null;
+  classes = null;
 
   constructor(private http: HttpClient) {
   }
@@ -96,6 +97,7 @@ export class AppComponent {
     headers.append('Accept', 'image/jpg');
     this.http.post('/api/simple-image', formData, {headers: headers}).subscribe(res => {
         console.log(res);
+        this.classes = res;
       }
     )
   }
